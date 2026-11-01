@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -101,6 +102,37 @@
             display: inline-block;
             border: 3px solid #5C4033;
             font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .tiktok-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            border: 4px solid #5C4033;
+            box-shadow: 0 5px 0 #5C4033;
+            transition: all 0.1s ease;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .tiktok-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #5C4033;
+        }
+
+        .tiktok-btn svg {
+            fill: #ffffff;
+            width: 20px;
+            height: 20px;
         }
 
         .bio-section {
@@ -194,6 +226,19 @@
             color: #8B7355;
             font-size: 14px;
             font-weight: bold;
+            line-height: 1.8;
+        }
+
+        .creator-credits {
+            font-size: 16px;
+            color: #5C4033;
+            background: #FFD700;
+            display: inline-block;
+            padding: 4px 12px;
+            border: 3px solid #5C4033;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 3px 0 #5C4033;
         }
     </style>
 </head>
@@ -209,6 +254,11 @@
             </div>
             <h1>Данил</h1>
             <div class="tag">@danilexd_roblox</div>
+            <br>
+            <a href="https://tiktok.com" target="_blank" class="tiktok-btn">
+                <svg viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A139.5,139.5,0,1,1,185.75,210.13a137.74,137.74,0,0,1,22.12,1.77V283.1a67.93,67.93,0,1,0-43.06,66.27c0-37.41,0-151.78,0-291.64h78.36a142.14,142.14,0,0,0,16.51,51.82,141.6,141.6,0,0,0,45.47,44.75V0h78.48A210.4,210.4,0,0,1,448,209.91Z"/></svg>
+                Открыть TikTok
+            </a>
         </div>
 
         <div class="stats-grid">
@@ -227,7 +277,7 @@
         <div class="bio-section">
             <h2>О блогере 📝</h2>
             <p style="margin: 0; line-height: 1.6; font-weight: 500;">
-                Данил стремительно поднимает свою аудиторию, снимая интересный и глупый контент по Роблоксу. Его видео наполнены мемами, забавными игровыми ситуациями и позитивной энергией, которая привлекает тысячи преданных фанатов.
+                Данил стремительно поднимает свою аудиторию, снимая интересный и глупый контент по Роблоксу. Его видео наполнены мемами, забавными игровыми ситуациями и позитивной энергией, которая привлекает тысячи преданных фанатов. У него также есть крутой друг — <strong>wubune</strong>!
             </p>
         </div>
 
@@ -236,13 +286,15 @@
             <ul class="info-list">
                 <li><span>Настоящее имя:</span> <span class="val">Данил</span></li>
                 <li><span>Дата рождения:</span> <span class="val">27 октября 2015 года</span></li>
+                <li><span>Лучший друг:</span> <span class="val" style="color: #d48806; font-weight: 800;">wubune 😎</span></li>
                 <li><span>Главная игра:</span> <span class="val">Roblox 🎮</span></li>
                 <li><span>Стиль видео:</span> <span class="val">Юмор, мемы, забавный контент</span></li>
             </ul>
         </div>
 
         <footer>
-            Фан-сайт danilexd_roblox • Сделано с уточками 🦆
+            <div>Фан-сайт danilexd_roblox • Сделано с уточками 🦆</div>
+            <div class="creator-credits">wubune создал</div>
         </footer>
     </div>
 
@@ -266,42 +318,37 @@
                 
             const newValue = prompt('Введите новое число для поля "' + labelName + '":', current);
             
-            if (newValue !== null && !newValue.match(/\D/) && newValue.trim() !== '') {
-                const cleanValue = Math.abs(parseInt(newValue));
-                if (type === 'followers') {
-                    localStorage.setItem('danil_followers', cleanValue);
-                    document.getElementById('followersVal').innerText = formatNum(cleanValue);
-                } else {
-                    localStorage.setItem('danil_likes', cleanValue);
-                    document.getElementById('likesVal').innerText = formatNum(cleanValue);
-                }
-            }
-        }
+Use code with caution.
+if (newValue !== null && !newValue.match(/\D/) && newValue.trim() !== '') {
+const cleanValue = Math.abs(parseInt(newValue));
+if (type === 'followers') {
+localStorage.setItem('danil_followers', cleanValue);
+document.getElementById('followersVal').innerText = formatNum(cleanValue);
+} else {
+localStorage.setItem('danil_likes', cleanValue);
+document.getElementById('likesVal').innerText = formatNum(cleanValue);
+}
+}
+}
+function spawnDucks() {
+const space = document.getElementById('duckSpace');
+const duckEmojis = ['🦆', '🐤', '🐥'];
+setInterval(() => {
+const duck = document.createElement('div');
+duck.innerText = duckEmojis[Math.floor(Math.random() * duckEmojis.length)];
+duck.style.position = 'absolute';
+duck.style.fontSize = Math.floor(Math.random() * 20 + 20) + 'px';
+duck.style.left = Math.random() * 100 + 'vw';
+duck.style.animation = 'fly ' + (Math.random() * 4 + 4) + 's linear forwards';
+space.appendChild(duck);
+setTimeout(() => {
+duck.remove();
+}, 8000);
+}, 1500);
+}
+window.onload = function() {
+initStats();
+spawnDucks();
+};
 
-        function spawnDucks() {
-            const space = document.getElementById('duckSpace');
-            const duckEmojis = ['🦆', '🐤', '🐥'];
-            
-            setInterval(() => {
-                const duck = document.createElement('div');
-                duck.innerText = duckEmojis[Math.floor(Math.random() * duckEmojis.length)];
-                duck.style.position = 'absolute';
-                duck.style.fontSize = Math.floor(Math.random() * 20 + 20) + 'px';
-                duck.style.left = Math.random() * 100 + 'vw';
-                duck.style.animation = 'fly ' + (Math.random() * 4 + 4) + 's linear forwards';
-                
-                space.appendChild(duck);
-                
-                setTimeout(() => {
-                    duck.remove();
-                }, 8000);
-            }, 1500);
-        }
 
-        window.onload = function() {
-            initStats();
-            spawnDucks();
-        };
-    </script>
-</body>
-</html>
