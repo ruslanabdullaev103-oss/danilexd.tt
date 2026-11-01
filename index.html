@@ -234,7 +234,7 @@
         <div class="stats-grid">
             <div class="stat-card" onclick="updateStat('followers', 'Подписчики')">
                 <div class="label">Подписчики 🦆</div>
-                <div class="value" id="followersVal">150 000</div>
+                <div class="value" id="followersVal">121</div>
                 <div class="hint">Нажми, чтобы изменить</div>
             </div>
             <div class="stat-card" onclick="updateStat('likes', 'Лайки')">
@@ -246,7 +246,7 @@
         <div class="bio-section">
             <h2>О блогере 📝</h2>
             <p style="margin: 0; line-height: 1.6; font-weight: 500;">
-                Данил стремительно поднимает свою аудиторию, снимая интересный и глупый контент по Роблоксу. Его видео наполнены мемами, забавными игровыми ситуациями и позитивной энергией, которая привлекает тысячи преданных фанатов. У него также есть крутой друг — <strong>wubune</strong>!
+                Данил стремительно поднимает свою аудиторию, снимая интересный и глупый контент по Роблоксу. Его видео наполнены мемами, забавными игровыми ситуациями и позитивной энергией, которая привлекает преданных фанатов. У него также есть крутой друг — <strong>wubune</strong>!
             </p>
         </div>
         <div class="bio-section">
@@ -254,9 +254,8 @@
             <ul class="info-list">
                 <li><span>Настоящее имя:</span> <span class="val">Данил</span></li>
                 <li><span>Дата рождения:</span> <span class="val">27 октября 2015 года</span></li>
-                <li><span>Лучший друг:</span> <span class="val" style="color: #d48806; font-weight: 800;">wubune 😎</span></li>
                 <li><span>Главная игра:</span> <span class="val">Roblox 🎮</span></li>
-                <li><span>Стиль видео:</span> <span class="val">Юмор, мемы, забавный контент</span></li>
+                <li><span>Стиль видео:</span> <span class="val">Юмор, мемы, интересный контент</span></li>
             </ul>
         </div>
         <footer>
@@ -264,51 +263,3 @@
             <div class="creator-credits">wubune создал</div>
         </footer>
     </div>
-        <script>
-        function initStats() {
-            const savedFollowers = localStorage.getItem('danil_followers') || '150000';
-            const savedLikes = localStorage.getItem('danil_likes') || '2500000';
-            document.getElementById('followersVal').innerText = formatNum(savedFollowers);
-            document.getElementById('likesVal').innerText = formatNum(savedLikes);
-        }
-        function formatNum(num) {
-            return parseInt(num).toLocaleString('ru-RU');
-        }
-        function updateStat(type, labelName) {
-            const current = type === 'followers' ? 
-                (localStorage.getItem('danil_followers') || '150000') : 
-                (localStorage.getItem('danil_likes') || '2500000');
-            const newValue = prompt('Введите новое число для поля "' + labelName + '":', current);
-            if (newValue !== null && !newValue.match(/\D/) && newValue.trim() !== '') {
-                const cleanValue = Math.abs(parseInt(newValue));
-                if (type === 'followers') {
-                    localStorage.setItem('danil_followers', cleanValue);
-                    document.getElementById('followersVal').innerText = formatNum(cleanValue);
-                } else {
-                    localStorage.setItem('danil_likes', cleanValue);
-                    document.getElementById('likesVal').innerText = formatNum(cleanValue);
-                }
-            }
-        }
-        function spawnDucks() {
-            const space = document.getElementById('duckSpace');
-            const duckEmojis = ['🦆', '🐤', '🐥'];
-            setInterval(() => {
-                const duck = document.createElement('div');
-                duck.innerText = duckEmojis[Math.floor(Math.random() * duckEmojis.length)];
-                duck.style.position = 'absolute';
-                duck.style.fontSize = Math.floor(Math.random() * 20 + 20) + 'px';
-                duck.style.left = Math.random() * 100 + 'vw';
-                duck.style.animation = 'fly ' + (Math.random() * 4 + 4) + 's linear forwards';
-                space.appendChild(duck);
-                setTimeout(() => { duck.remove(); }, 8000);
-            }, 1500);
-        }
-        window.onload = function() {
-            initStats();
-            spawnDucks();
-        };
-    </script>
-</body>
-</html>
-
