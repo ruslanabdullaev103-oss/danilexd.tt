@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фан-сайт danilexd_roblox</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+            background-color: #ffffff;
+            background-image: radial-gradient(#FFD700 15%, transparent 15%);
+            background-size: 20px 20px;
+            color: #333333;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .duck-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(105vh) translateX(0) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(50vh) translateX(50px) rotate(15deg); }
+            100% { transform: translateY(-10vh) translateX(-20px) rotate(-15deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background: #ffffff;
+            border: 6px solid #5C4033;
+            border-radius: 24px;
+            box-shadow: 0 12px 0 #5C4033;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid #5C4033;
+            background: #fff;
+            object-fit: cover;
+            box-shadow: 0 6px 0 #5C4033;
+        }
+
+        .duck-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #FFD700;
+            border: 4px solid #5C4033;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 3px 0 #5C4033;
+        }
+
+        h1 {
+            color: #5C4033;
+            margin: 10px 0 5px;
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .tag {
+            background: #FFD700;
+            color: #5C4033;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            border: 3px solid #5C4033;
+            font-size: 15px;
+        }
+
+        .bio-section {
+            background: #FFFDF3;
+            border: 4px solid #5C4033;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 0 #5C4033;
+        }
+
+        .bio-section h2 {
+            color: #5C4033;
+            margin-top: 0;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: #FFD700;
+            border: 4px solid #5C4033;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.1s;
+            box-shadow: 0 6px 0 #5C4033;
+        }
+
+        .stat-card:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #5C4033;
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #5C4033;
+            margin: 5px 0;
+        }
+
+        .stat-card .label {
+            font-size: 14px;
+            color: #5C4033;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .hint {
+            font-size: 11px;
+            color: #8B7355;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 2px dashed #5C4033;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list span.val {
+            color: #5C4033;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #8B7355;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="duck-animation" id="duckSpace"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="avatar-container">
+                <img class="avatar" src="https://svgrepo.com" alt="Аватарка Данила">
+                <div class="duck-badge">🦆</div>
+            </div>
+            <h1>Данил</h1>
+            <div class="tag">@danilexd_roblox</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" onclick="updateStat('followers', 'Подписчики')">
+                <div class="label">Подписчики 🦆</div>
+                <div class="value" id="followersVal">150 000</div>
+                <div class="hint">Нажми, чтобы изменить</div>
+            </div>
+            <div class="stat-card" onclick="updateStat('likes', 'Лайки')">
+                <div class="label">Лайки ❤️</div>
+                <div class="value" id="likesVal">2 500 000</div>
+                <div class="hint">Нажми, чтобы изменить</div>
+            </div>
+        </div>
+
+        <div class="bio-section">
+            <h2>О блогере 📝</h2>
+            <p style="margin: 0; line-height: 1.6; font-weight: 500;">
+                Данил стремительно поднимает свою аудиторию, снимая интересный и глупый контент по Роблоксу. Его видео наполнены мемами, забавными игровыми ситуациями и позитивной энергией, которая привлекает тысячи преданных фанатов.
+            </p>
+        </div>
+
+        <div class="bio-section">
+            <h2>Личное досье 🗂️</h2>
+            <ul class="info-list">
+                <li><span>Настоящее имя:</span> <span class="val">Данил</span></li>
+                <li><span>Дата рождения:</span> <span class="val">27 октября 2015 года</span></li>
+                <li><span>Главная игра:</span> <span class="val">Roblox 🎮</span></li>
+                <li><span>Стиль видео:</span> <span class="val">Юмор, мемы, забавный контент</span></li>
+            </ul>
+        </div>
+
+        <footer>
+            Фан-сайт danilexd_roblox • Сделано с уточками 🦆
+        </footer>
+    </div>
+
+    <script>
+        function initStats() {
+            const savedFollowers = localStorage.getItem('danil_followers') || '150000';
+            const savedLikes = localStorage.getItem('danil_likes') || '2500000';
+            
+            document.getElementById('followersVal').innerText = formatNum(savedFollowers);
+            document.getElementById('likesVal').innerText = formatNum(savedLikes);
+        }
+
+        function formatNum(num) {
+            return parseInt(num).toLocaleString('ru-RU');
+        }
+
+        function updateStat(type, labelName) {
+            const current = type === 'followers' ? 
+                (localStorage.getItem('danil_followers') || '150000') : 
+                (localStorage.getItem('danil_likes') || '2500000');
+                
+            const newValue = prompt('Введите новое число для поля "' + labelName + '":', current);
+            
+            if (newValue !== null && !newValue.match(/\D/) && newValue.trim() !== '') {
+                const cleanValue = Math.abs(parseInt(newValue));
+                if (type === 'followers') {
+                    localStorage.setItem('danil_followers', cleanValue);
+                    document.getElementById('followersVal').innerText = formatNum(cleanValue);
+                } else {
+                    localStorage.setItem('danil_likes', cleanValue);
+                    document.getElementById('likesVal').innerText = formatNum(cleanValue);
+                }
+            }
+        }
+
+        function spawnDucks() {
+            const space = document.getElementById('duckSpace');
+            const duckEmojis = ['🦆', '🐤', '🐥'];
+            
+            setInterval(() => {
+                const duck = document.createElement('div');
+                duck.innerText = duckEmojis[Math.floor(Math.random() * duckEmojis.length)];
+                duck.style.position = 'absolute';
+                duck.style.fontSize = Math.floor(Math.random() * 20 + 20) + 'px';
+                duck.style.left = Math.random() * 100 + 'vw';
+                duck.style.animation = 'fly ' + (Math.random() * 4 + 4) + 's linear forwards';
+                
+                space.appendChild(duck);
+                
+                setTimeout(() => {
+                    duck.remove();
+                }, 8000);
+            }, 1500);
+        }
+
+        window.onload = function() {
+            initStats();
+            spawnDucks();
+        };
+    </script>
+</body>
+</html>
